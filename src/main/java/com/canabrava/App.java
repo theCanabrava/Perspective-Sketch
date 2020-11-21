@@ -38,5 +38,8 @@ public class App extends Application
         displayStage.setScene(displayView);
         displayStage.show();
         widgetStage.show();
+
+        widgetStage.setX(100);
+        widgetStage.setY(100);
     }
 }

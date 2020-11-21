@@ -1,6 +1,5 @@
 package com.canabrava.ui.display;
 
-import com.canabrava.space.HorizonLine;
 import com.canabrava.space.PerspectiveLine;
 import com.canabrava.ui.DisplayPresenter;
 import com.canabrava.ui.DisplayViewContract;
