@@ -17,7 +17,7 @@ public class Canvas implements PositionListener, WindowListener
         plane = viewPlane;
         horizon = line;
         this.height = height;
-        renderer = new SameAngleLineRenderer(height);
+        renderer = new SquareLineRenderer((float)0.5, new float[] {0, -1});
         plane.subscribe(this);
     }
 

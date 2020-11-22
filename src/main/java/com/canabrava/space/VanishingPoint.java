@@ -31,6 +31,8 @@ public class VanishingPoint implements PositionListener
         this.canvas = canvas;
     }
 
+    public float getAngle() { return origin.getAngle(); }
+
     @Override
     public void onElementPositionChanged(float x, float y, float z)
     {

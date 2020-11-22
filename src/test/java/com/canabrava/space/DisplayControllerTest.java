@@ -38,7 +38,7 @@ public class DisplayControllerTest
     {
         SpaceFactory.clearToolset();
         DisplayController controller = new DisplayController();
-        float expectedAmount = 21;
+        float expectedAmount = 20;
 
         List<PerspectiveLine> lines = controller.getPerspectiveLines();
         float amount = lines.size();

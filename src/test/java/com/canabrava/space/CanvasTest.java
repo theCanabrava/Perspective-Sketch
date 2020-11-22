@@ -88,56 +88,6 @@ public class CanvasTest
     }
 
     @Test
-    public void shouldCastLinesOnTwoLeftCorners()
-    {
-        SpaceFactory.clearToolset();
-        HorizonLine horizon = new HorizonLine(SpaceFactory.getToolset());
-        VanishingPoint point = generatePoint(horizon);
-        Canvas canvas = new Canvas(SpaceFactory.getToolset().getViewPlane(), horizon, 1);
-        float expectedX = -1;
-        float expectedTopY = 1;
-        float expectedBottomY = -1;
-
-        canvas.addPoint(point);
-        SpaceFactory.getToolset().getGrid().setAngle(150);
-        List<PerspectiveLine> lines = canvas.getPerspectiveLines();
-        float actualTopX = lines.get(0).getOrigin()[0];
-        float actualTopY = lines.get(0).getOrigin()[1];
-        float actualBottomX = lines.get(lines.size()-1).getOrigin()[0];
-        float actualBottomY = lines.get(lines.size()-1).getOrigin()[1];
-
-        assertEquals(expectedX, actualTopX, DELTA);
-        assertEquals(expectedTopY, actualTopY, DELTA);
-        assertEquals(expectedX, actualBottomX, DELTA);
-        assertEquals(expectedBottomY, actualBottomY, DELTA);
-    }
-
-    @Test
-    public void shouldCastLinesOnTwoRightCorners()
-    {
-        SpaceFactory.clearToolset();
-        HorizonLine horizon = new HorizonLine(SpaceFactory.getToolset());
-        VanishingPoint point = generatePoint(horizon);
-        Canvas canvas = new Canvas(SpaceFactory.getToolset().getViewPlane(), horizon, 1);
-        float expectedX = 1;
-        float expectedTopY = 1;
-        float expectedBottomY = -1;
-
-        canvas.addPoint(point);
-        SpaceFactory.getToolset().getGrid().setAngle(30);
-        List<PerspectiveLine> lines = canvas.getPerspectiveLines();
-        float actualTopX = lines.get(0).getOrigin()[0];
-        float actualTopY = lines.get(0).getOrigin()[1];
-        float actualBottomX = lines.get(lines.size()-1).getOrigin()[0];
-        float actualBottomY = lines.get(lines.size()-1).getOrigin()[1];
-
-        assertEquals(expectedX, actualTopX, DELTA);
-        assertEquals(expectedTopY, actualTopY, DELTA);
-        assertEquals(expectedX, actualBottomX, DELTA);
-        assertEquals(expectedBottomY, actualBottomY, DELTA);
-    }
-
-    @Test
     public void shouldCalculateLinesLeftOfCanvas()
     {
         SpaceFactory.clearToolset();
@@ -162,7 +112,7 @@ public class CanvasTest
         Canvas canvas = new Canvas(SpaceFactory.getToolset().getViewPlane(), horizon, 1);
 
         canvas.addPoint(point);
-        SpaceFactory.getToolset().getGrid().setAngle(30);
+        SpaceFactory.getToolset().getGrid().setAngle(75);
         List<PerspectiveLine> lines = canvas.getPerspectiveLines();
 
         checkInterception(lines, point);

@@ -37,4 +37,6 @@ public class PerspectivePoint implements PositionListener, AngleListener
     public void setVanishingPoint(PositionListener vanishingPoint) {
         this.vanishingPoint = vanishingPoint;
     }
+
+    public float getAngle() { return (toolset.getGrid().getAngle() + angleOffset); }
 }

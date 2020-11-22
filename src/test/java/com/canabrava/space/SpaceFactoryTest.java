@@ -92,7 +92,7 @@ public class SpaceFactoryTest
         Canvas canvas = SpaceFactory.getCanvas();
         float expectedHeight = 1;
         float expectedWidth = 1;
-        int expectedLines = 21;
+        int expectedLines = 20;
 
         assertEquals(expectedWidth, canvas.getSize()[0], DELTA);
         assertEquals(expectedHeight, canvas.getSize()[1], DELTA);
