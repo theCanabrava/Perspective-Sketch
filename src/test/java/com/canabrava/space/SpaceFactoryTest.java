@@ -24,8 +24,8 @@ public class SpaceFactoryTest
         SpaceFactory.clearToolset();
         Observer observer = SpaceFactory.getToolset().getObserver();
         float expectedX = 0;
-        float expectedY = 1;
-        float expectedZ = 0;
+        float expectedY = 0;
+        float expectedZ = 1;
 
         float[] positionVector = observer.getPosition();
         float actualX = positionVector[0];
@@ -92,7 +92,7 @@ public class SpaceFactoryTest
         Canvas canvas = SpaceFactory.getCanvas();
         float expectedHeight = 1;
         float expectedWidth = 1;
-        int expectedLines = 20;
+        int expectedLines = 40;
 
         assertEquals(expectedWidth, canvas.getSize()[0], DELTA);
         assertEquals(expectedHeight, canvas.getSize()[1], DELTA);

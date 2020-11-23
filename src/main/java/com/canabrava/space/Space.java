@@ -17,5 +17,5 @@ class Space
 
     public void attach(SpaceElement element) { elements.add(element); }
     public SpaceElement getElementAt(int position) { return elements.get(position); }
-    public void clear() {elements.clear();}
+    public void clear() { elements.clear(); }
 }

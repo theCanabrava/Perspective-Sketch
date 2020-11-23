@@ -34,7 +34,7 @@ public class HorizonLineTest
         HorizonLine line = new HorizonLine(SpaceFactory.getToolset());
         float expectedHeight = 100;
 
-        SpaceFactory.getToolset().getObserver().setPosition(0, 0, 100);
+        SpaceFactory.getToolset().getObserver().setPosition(0, 100, 0);
 
         assertEquals(expectedHeight, line.getHeight(), DELTA);
     }

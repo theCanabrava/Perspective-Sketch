@@ -17,14 +17,14 @@ public class PositionController
     public List<Float> setObserverDistance(float distance)
     {
         float[] currentPosition = toolset.getObserver().getPosition();
-        toolset.getObserver().setPosition(currentPosition[0], Math.abs(distance), currentPosition[2]);
+        toolset.getObserver().setPosition(currentPosition[0], currentPosition[1], Math.abs(distance));
         return getPointsPosition();
     }
 
     public void setObserverHeight(float height)
     {
         float[] currentPosition = toolset.getObserver().getPosition();
-        toolset.getObserver().setPosition(currentPosition[0], currentPosition[1], height);
+        toolset.getObserver().setPosition(currentPosition[0], height, currentPosition[2]);
     }
 
     public List<Float> setGridRotation(float degree)

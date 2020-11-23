@@ -36,7 +36,7 @@ public class VanishingPointTest
         float expectedX = 0;
         float expectedZ = 1;
 
-        SpaceFactory.getToolset().getObserver().setPosition(0, 0, 1);
+        SpaceFactory.getToolset().getObserver().setPosition(0, 1, 0);
         float[] position = vanishingPoint.getPosition();
         float actualX = position[0];
         float actualZ = position[1];
@@ -55,7 +55,7 @@ public class VanishingPointTest
         float expectedX = 1;
         float expectedZ = 0;
 
-        SpaceFactory.getToolset().getObserver().setPosition(0, 1, 0);
+        SpaceFactory.getToolset().getObserver().setPosition(0, 0, 1);
         SpaceFactory.getToolset().getGrid().setAngle(45);
         float[] position = vanishingPoint.getPosition();
         float actualX = position[0];

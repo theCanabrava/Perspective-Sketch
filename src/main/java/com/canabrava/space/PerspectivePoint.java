@@ -21,7 +21,7 @@ public class PerspectivePoint implements PositionListener, AngleListener
         double degree = 90 - (toolset.getGrid().getAngle() + angleOffset);
         double radians = Math.toRadians(degree);
         double tangent = Math.tan(radians);
-        double distance = toolset.getObserver().getPosition()[1];
+        double distance = toolset.getObserver().getPosition()[2];
         x = (float) (distance*tangent);
         if(vanishingPoint != null) vanishingPoint.onElementPositionChanged(0, 0, 0);
     }

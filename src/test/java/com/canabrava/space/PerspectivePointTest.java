@@ -24,7 +24,7 @@ public class PerspectivePointTest
         SpaceFactory.clearToolset();
         float expectedPosition = 1;
 
-        SpaceFactory.getToolset().getObserver().setPosition(0, 1, 0);
+        SpaceFactory.getToolset().getObserver().setPosition(0, 0, 1);
         SpaceFactory.getToolset().getGrid().setAngle(45);
 
         PerspectivePoint point = new PerspectivePoint(SpaceFactory.getToolset(), 0);
@@ -38,7 +38,7 @@ public class PerspectivePointTest
         SpaceFactory.clearToolset();
         float expectedPosition = -1;
 
-        SpaceFactory.getToolset().getObserver().setPosition(0, 1, 0);
+        SpaceFactory.getToolset().getObserver().setPosition(0, 0, 1);
         SpaceFactory.getToolset().getGrid().setAngle(45);
 
         PerspectivePoint point = new PerspectivePoint(SpaceFactory.getToolset(), 90);
@@ -52,11 +52,11 @@ public class PerspectivePointTest
         SpaceFactory.clearToolset();
         float expectedPosition = 2;
 
-        SpaceFactory.getToolset().getObserver().setPosition(0, 1, 0);
+        SpaceFactory.getToolset().getObserver().setPosition(0, 0, 1);
         SpaceFactory.getToolset().getGrid().setAngle(45);
 
         PerspectivePoint point = new PerspectivePoint(SpaceFactory.getToolset(), 0);
-        SpaceFactory.getToolset().getObserver().setPosition(0, 2, 0);
+        SpaceFactory.getToolset().getObserver().setPosition(0, 0, 2);
 
         assertEquals(expectedPosition, point.getPosition(), DELTA);
     }
@@ -67,7 +67,7 @@ public class PerspectivePointTest
         SpaceFactory.clearToolset();
         float expectedPosition = (float) 0.5;
 
-        SpaceFactory.getToolset().getObserver().setPosition(0, 1, 0);
+        SpaceFactory.getToolset().getObserver().setPosition(0, 0, 1);
         SpaceFactory.getToolset().getGrid().setAngle(45);
 
         PerspectivePoint point = new PerspectivePoint(SpaceFactory.getToolset(), 0);
@@ -82,7 +82,7 @@ public class PerspectivePointTest
         SpaceFactory.clearToolset();
         float expectedPosition = (float) -1;
 
-        SpaceFactory.getToolset().getObserver().setPosition(0, 1, 0);
+        SpaceFactory.getToolset().getObserver().setPosition(0, 0, 1);
         SpaceFactory.getToolset().getGrid().setAngle(45);
 
         PerspectivePoint point = new PerspectivePoint(SpaceFactory.getToolset(), 0);

@@ -80,7 +80,7 @@ public class DisplayPresenterTest
     {
         presenter = new DisplayPresenter(positionController, displayController);
         MockView view = new MockView();
-        int expectedAmount = 20;
+        int expectedAmount = 40;
 
         presenter.setView(view);
         positionController.setObserverDistance(2);

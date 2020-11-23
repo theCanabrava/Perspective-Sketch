@@ -7,14 +7,14 @@ public class HorizonLine implements PositionListener, WindowListener
 
     HorizonLine(SpaceToolset toolset)
     {
-        height = toolset.getObserver().getPosition()[2];
+        height = toolset.getObserver().getPosition()[1];
         center = toolset.getViewPlane().getWindow()[0];
         toolset.getObserver().subscribe(this);
         toolset.getViewPlane().subscribe(this);
     }
 
     @Override
-    public void onElementPositionChanged(float x, float y, float z) { height = z; }
+    public void onElementPositionChanged(float x, float y, float z) { height = y; }
 
     public float getHeight() { return height; }
 

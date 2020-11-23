@@ -45,7 +45,7 @@ class SpaceFactory
 
     private static void generateToolset()
     {
-        Observer observer= new Observer(0,1,0);
+        Observer observer= new Observer(0,0,1);
         Grid grid = new Grid(0);
         ViewPlane viewPlane = new ViewPlane();
         currentToolset = new SpaceToolset(observer, grid, viewPlane);

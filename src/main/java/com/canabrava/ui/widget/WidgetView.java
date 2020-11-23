@@ -32,14 +32,14 @@ public class WidgetView extends Scene implements WidgetViewContract
 
     private void instanceLine(Group parent, double width, double height)
     {
-        line = new PlaneLine(parent, 25);
+        line = new PlaneLine(parent, 50);
         line.setStart(0, height-width);
         line.setEnd(width);
     }
 
     private void instanceSlider(double width, double height)
     {
-        slider = new ObserverSlider(25);
+        slider = new ObserverSlider(50);
         slider.setCenter(width/2, height-width);
         slider.setListener(position -> presenter.onObserverMoved((float) position));
     }

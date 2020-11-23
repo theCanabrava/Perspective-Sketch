@@ -4,7 +4,7 @@ public class VanishingPoint implements PositionListener
 {
     private final PerspectivePoint origin;
     private final HorizonLine axis;
-    private final int sections = 10;
+    private final int sections = 20;
     private final float phase = 0;
     private PositionListener canvas;
 
@@ -18,8 +18,8 @@ public class VanishingPoint implements PositionListener
     public float[] getPosition()
     {
         float x = origin.getPosition();
-        float z = axis.getHeight();
-        return new float[] {x, z};
+        float y = axis.getHeight();
+        return new float[] {x, y};
     }
 
     public int getSections() { return sections; }
