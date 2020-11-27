@@ -35,8 +35,6 @@ public class PerspectiveRenderer
         for(int i=lines.size(); i<vectors.size(); i++)
         {
             Line line = new Line();
-            line.setStartX(0);
-            line.setEndX(parent.getScene().getWidth());
             parent.getChildren().add(line);
             lines.add(line);
         }
@@ -53,11 +51,29 @@ public class PerspectiveRenderer
 
     private void updateLine(Line line, PerspectiveLine vector)
     {
+        if(vector.getDirection()[0] == 0) drawVertical(line,  vector);
+        else drawTilted(line, vector);
+    }
+
+    private void drawVertical(Line line, PerspectiveLine vector)
+    {
+        double scaledX = (vector.getOrigin()[0]*scale) + centerX;
+        line.setStartX(scaledX);
+        line.setEndX(scaledX);
+        line.setStartY(0);
+        line.setEndY(parent.getScene().getHeight());
+    }
+
+    private void drawTilted(Line line, PerspectiveLine vector)
+    {
         double scaledX = (vector.getOrigin()[0]*scale) + centerX;
         double scaledY = -(vector.getOrigin()[1]*scale) + centerY;
         double startY = (-scaledX)*(-vector.getDirection()[1]/vector.getDirection()[0]) + scaledY;
         double endY = (parent.getScene().getWidth()-scaledX)*(-vector.getDirection()[1]/vector.getDirection()[0]) + scaledY;
+        line.setStartX(0);
+        line.setEndX(parent.getScene().getWidth());
         line.setStartY(startY);
         line.setEndY(endY);
     }
+
 }
