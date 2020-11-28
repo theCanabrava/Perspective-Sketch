@@ -8,7 +8,7 @@ public class WidgetPresenter
 {
     PositionController controller;
     private float observerDistance = 1;
-    private float gridSpin = 0;
+    private float gridSpin = (float) 0.01;
     private List<Float> perspectivePoints;
     private WidgetViewContract view;
 
