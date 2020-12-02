@@ -51,29 +51,64 @@ public class PerspectiveRenderer
 
     private void updateLine(Line line, PerspectiveLine vector)
     {
-        if(vector.getDirection()[0] == 0) drawVertical(line,  vector);
-        else drawTilted(line, vector);
+        double[] path = getPathParametersOfVector(vector);
+        double[] letters = getQuadraticParameters(path);
+        double[] roots = solveQuadratic(letters);
+        double[] unscaledPoints = getLineEnds(path, roots);
+        double[] scaledPoint = scaleLine(unscaledPoints);
+        drawLine(line, scaledPoint);
     }
 
-    private void drawVertical(Line line, PerspectiveLine vector)
+    private double[] getPathParametersOfVector(PerspectiveLine vector)
     {
-        double scaledX = (vector.getOrigin()[0]*scale) + centerX;
-        line.setStartX(scaledX);
-        line.setEndX(scaledX);
-        line.setStartY(0);
-        line.setEndY(parent.getScene().getHeight());
+        double xo = vector.getOrigin()[0];
+        double yo = vector.getOrigin()[1];
+        double xv = vector.getDirection()[0];
+        double yv = vector.getDirection()[1];
+        double r = 1.414;
+
+        return new double[] {xo, yo, xv, yv, r};
     }
 
-    private void drawTilted(Line line, PerspectiveLine vector)
+    private double[] getQuadraticParameters(double[] path)
     {
-        double scaledX = (vector.getOrigin()[0]*scale) + centerX;
-        double scaledY = -(vector.getOrigin()[1]*scale) + centerY;
-        double startY = (-scaledX)*(-vector.getDirection()[1]/vector.getDirection()[0]) + scaledY;
-        double endY = (parent.getScene().getWidth()-scaledX)*(-vector.getDirection()[1]/vector.getDirection()[0]) + scaledY;
-        line.setStartX(0);
-        line.setEndX(parent.getScene().getWidth());
-        line.setStartY(startY);
-        line.setEndY(endY);
+        double a = path[2]*path[2] + path[3]*path[3];
+        double b = 2*path[0]*path[2] + 2*path[1]*path[3];
+        double c = path[0]*path[0] + path[1]*path[1] - path[4]*path[4];
+        return new double[] {a, b, c};
     }
 
+    private double[] solveQuadratic(double[] letters)
+    {
+        double innerRoot = Math.sqrt(letters[1]*letters[1]-4*letters[0]*letters[2]);
+        double root1 = (-letters[1] + innerRoot)/(2*letters[0]);
+        double root2 = (-letters[1] - innerRoot)/(2*letters[0]);
+        return new double[] {root1, root2};
+    }
+
+    private double[] getLineEnds(double[] path, double[] roots)
+    {
+        double unscaledStartX = path[0] + path[2]*roots[0];
+        double unscaledEndX = path[0] + path[2]*roots[1];
+        double unscaledStartY = path[1] + path[3]*roots[0];
+        double unscaledEndY = path[1] + path[3]*roots[1];
+        return new double[] {unscaledStartX, unscaledEndX, unscaledStartY, unscaledEndY};
+    }
+
+    private double[] scaleLine(double[] unscaledPoints)
+    {
+        double startX = (unscaledPoints[0]*scale) + centerX;
+        double endX = (unscaledPoints[1]*scale) + centerX;
+        double startY = -(unscaledPoints[2]*scale) + centerY;
+        double endY = -(unscaledPoints[3]*scale) + centerY;
+        return new double[] {startX, endX, startY, endY};
+    }
+
+    private void drawLine(Line line, double[] scaledPoint)
+    {
+        line.setStartX(scaledPoint[0]);
+        line.setEndX(scaledPoint[1]);
+        line.setStartY(scaledPoint[2]);
+        line.setEndY(scaledPoint[3]);
+    }
 }
