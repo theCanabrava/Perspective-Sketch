@@ -24,9 +24,15 @@ public class SquareLineRenderer implements PerspectiveLineRenderer
         perspectiveLines.clear();
         if(points.size()>1)
         {
-            addLines(points.get(0), points.get(1));
-            addLines(points.get(1), points.get(0));
+            updateLines(points.get(0), points.get(1));
+            updateLines(points.get(1), points.get(0));
         }
+    }
+
+    private void updateLines(VanishingPoint from, VanishingPoint to)
+    {
+        if(from.getAngle() == 90) addPerpendicularLine(from, to);
+        else addLines(from, to);
     }
 
     private void addLines(VanishingPoint from, VanishingPoint to)
@@ -76,5 +82,34 @@ public class SquareLineRenderer implements PerspectiveLineRenderer
         float m = ((from[1] - to[1])/(from[0] - to[0]));
         float n = from[1] - m*from[0];
         return new float[] {m, n};
+    }
+
+    private void addPerpendicularLine(VanishingPoint from, VanishingPoint to)
+    {
+        float[] shiftedObserver = new float[] {origin[0] + size, origin[1]};
+        float[] shiftedFunction = calculateFunction(shiftedObserver, from.getPosition());
+        for(int i=0; i < from.getSections(); i++)
+        {
+            float[] corner = calculateShiftedCorner(from, i, shiftedObserver);
+            float projectionX = calculateProjection(from, corner);
+            float[] lineOrigin = calculateLineOrigin(shiftedFunction, projectionX);
+            float[] lineDirection = calculateLineDirection(to, lineOrigin);
+            perspectiveLines.add(new PerspectiveLine(lineOrigin, lineDirection));
+        }
+
+    }
+
+    private float[] calculateShiftedCorner(VanishingPoint from, int i, float[] observer)
+    {
+        float length = i*size + from.getPhase();
+        float cornerX = (float) (origin[0] + length*Math.cos(Math.toRadians(from.getAngle())) + observer[0]);
+        float cornerY = (float) (from.getPosition()[1] + length*Math.sin(Math.toRadians(from.getAngle())));
+        return new float[] {cornerX, cornerY};
+    }
+
+    private float[] calculateLineOrigin(float[] function, float projectionX)
+    {
+        float lineY = function[0]*projectionX + function[1];
+        return new float[] {projectionX, lineY};
     }
 }

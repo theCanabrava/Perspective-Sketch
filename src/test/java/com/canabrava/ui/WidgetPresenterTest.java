@@ -33,7 +33,7 @@ public class WidgetPresenterTest
         presenter = new WidgetPresenter(controller);
         MockView view = new MockView();
         float expectedPosition = 1;
-        float expectedRotation = (float) 0.01;
+        float expectedRotation = 0;
         float expectedSize = 2;
 
         presenter.setView(view);
